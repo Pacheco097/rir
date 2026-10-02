@@ -1,0 +1,20 @@
+# Banco MySQL para desenvolvimento local (opcional — também é possível usar SQLite).
+# Uso: docker compose up -d
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: gestao-gaps-mysql
+    environment:
+      MYSQL_DATABASE: gestao_gaps
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_USER: gaps
+      MYSQL_PASSWORD: secret
+      TZ: America/Sao_Paulo
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+volumes:
+  mysql-data:
